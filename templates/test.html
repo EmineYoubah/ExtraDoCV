@@ -1,0 +1,12 @@
+{% extends "layouts/default.html" %}
+{% block body %}
+ <script>
+        // Attendre pendant 3 secondes (3000 millisecondes)
+        setTimeout(function () {
+            // Rediriger vers une autre page
+            window.location.href = 'templates/index.html';
+        }, 10000); // 3 secondes
+    </script>
+
+<p>hello</p>
+{% endblock %}

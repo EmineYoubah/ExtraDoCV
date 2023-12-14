@@ -1,0 +1,48 @@
+{% extends "layouts/default.html" %}
+{% block body %}
+    <div class="container">
+        <div id="result" class="mt-4"></div>
+    </div>
+
+
+
+    <script>
+        function afficherInformations(data) {
+            var resultDiv = document.getElementById("result");
+
+            // Parcourir le dictionnaire et afficher les clés et valeurs
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    var card = document.createElement("div");
+                    card.className = "card mt-2";
+
+                    var cardBody = document.createElement("div");
+                    cardBody.className = "card-body";
+
+                    var heading = document.createElement("h6");
+                    heading.className = "card-title";
+                    heading.textContent = key;
+
+                    var valueText = document.createElement("p");
+                    valueText.className = "card-text";
+                    valueText.innerHTML =  data[key] ;
+
+                    cardBody.appendChild(heading);
+                    cardBody.appendChild(valueText);
+                    card.appendChild(cardBody);
+
+                    resultDiv.appendChild(card);
+                }
+            }
+        }
+
+        // Exemple d'utilisation
+    // Récupérer la variable 'data' passée depuis Flask
+        var exempleData = {{ data | tojson | safe }}
+        afficherInformations(exempleData);
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock %}
